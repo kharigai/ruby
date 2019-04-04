@@ -1,10 +1,10 @@
 n = gets.strip.to_i
 
 a = [[0, 0, 0]]
+a << n.times { gets.strip.split.map(&:to_i) }
 
 enable = true
 n.times do |i|
-  a << gets.strip.split.map(&:to_i)
   j = i + 1
   # t: time
   t = a[j][0] - a[i][0]
