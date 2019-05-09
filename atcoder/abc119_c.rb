@@ -1,38 +1,26 @@
-@n, a, b, c = gets.strip.split.map(&:to_i)
-@l = @n.times.map { gets.strip.to_i }
+@N, @A, @B, @C = gets.strip.split.map(&:to_i)
+@sticks = @N.times.map { gets.strip.to_i }
 
-return 0 if @n.zero?
+def chkmin(a, b) a < b ? a : b end
 
-@t = []
-@mp = []
-def dfd(i, sum, mp)
-  if i >= @n
-    @t << sum
-    @mp << mp
-    return
+INF = 100000
+
+def dfd(n, a, b, c)
+  if n == @N
+    if a > 0 && b > 0 && c > 0
+      return (@A - a).abs + (@B - b).abs + (@C - c).abs
+    else
+      return INF
+    end
   end
-  dfd(i + 1, sum, mp)
-  dfd(i + 1, sum + @l[i], mp + 10)
+
+  res = dfd(n + 1, a, b, c)
+
+  res = chkmin(res, dfd(n + 1, a + @sticks[n], b, c) + (a > 0 ? 10 : 0))
+  res = chkmin(res, dfd(n + 1, a, b + @sticks[n], c) + (b > 0 ? 10 : 0))
+  res = chkmin(res, dfd(n + 1, a, b, c + @sticks[n]) + (c > 0 ? 10 : 0))
+ 
+  return res
 end
 
-dfd(0, 0, 0)
-
-
-def get_min_mp(mp)
-  @l.map { |d| (d - mp).abs }.min
-end
-
-sum = 0
-[a, b, c].each_with_index do |d|
-  if i = @t.bsearch_index { |k| k == d }
-    tmp = [@mp[i], get_min_mp(d)].min
-    puts tmp
-    sum += tmp
-  else
-    tmp = get_min_mp(d)
-    puts tmp
-    sum += tmp
-  end
-end
-
-puts sum
+puts dfd(0, 0, 0, 0)
