@@ -1,20 +1,12 @@
-n, T = gets.strip.split.map(&:to_i)
+N, T = gets.strip.split.map(&:to_i)
 
-def chmin(a, b) a > b ? a : b end
+def get_min(a, b) a < b ? a : b end
 
 INF = 10 ** 5
 cost = INF
-time = INF
-n.times do
+N.times do
   c, t = gets.strip.split.map(&:to_i)
-  if t <= T && c < cost
-    cost = c
-    time = t
-  end
+  cost = get_min(c, cost) if t <= T
 end
 
-if cost != INF 
-  puts cost
-else
-  puts 'TLE'
-end
+puts cost < INF ? cost : 'TLE'
