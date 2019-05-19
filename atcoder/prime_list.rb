@@ -1,21 +1,21 @@
-def get_prime_list(max)
-  return [] if max < 0
+def prime_list(n)
+  return [] if n < 2
 
   # seve 篩（ふるい）
-  seve = Array.new(max + 1){true}
+  seve = Array.new(n + 1){true}
   primes = []
 
-  (2..max).each do |n|
-    if seve[n] == true
-      primes << n
-      k = n * n
-      while k <= max
+  (2..n).each do |i|
+    if seve[i] == true
+      primes << i
+      k = i * i
+      while k <= n
         seve[k] = false
-        k += n
+        k += i
       end
     end
   end
   primes
 end
 
-p prime_list(1000)
+p prime_list(10)
