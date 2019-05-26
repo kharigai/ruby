@@ -2,12 +2,19 @@
 N, K = gets.strip.split.map(&:to_i)
 n = gets.strip.to_i
 
+a = gets.strip.split.each_with_index.map { |c, i| c.to_i - i - 1 }.sort
+
 # 配列を作成
 # => [1, 2, 3]
 a = N.times.map { gets.strip.to_i }
 
 # => a = [1, 2, 3], b = [4, 5, 6], c = [7, 8, 9]
 a, b, c  = N.times.map { gets.strip.split.map(&:to_i) }
+
+# 複数の配列を初期化
+ls = []
+rs = []
+M.times { |i| ls[i], rs[i] = gets.strip.split.map(&:to_i) }
 
 # change max, min 
 # データの入れ替え用
@@ -17,6 +24,10 @@ def chmin(a, b) a < b ? a : b end
 # 配列の初期化(1次元、2次元)
 a = Array.new(N){0}
 a = Array.new(N).map { Array.new(K){0} }
+
+# 積算
+puts a.inject(0) { |sum, n| sum + (n - b).abs }
+
 
 # 指定された値以下のすべての約数が含まれる配列を生成する
 def factor(n) 
@@ -44,3 +55,30 @@ def prime_list(n)
   end
   primes
 end
+
+## bit 全探索
+D = gets.strip.to_i
+
+(1<<D).times do |mask|
+
+  D.times do |i|
+    unless (mask & (1<<i)).zero?
+      # 処理
+    end
+  end
+
+  # 全化作以外を対応する場合
+  if sum < G
+    (D - 1).downto(0) do |i|
+      next unless (mask & (1<<i)).zero?
+      (0...counts[i]).each do
+        break if sum >= G
+        sum += (i + 1) * 100
+        count += 1
+      end
+    end
+  end
+  res = chmin(count, res)
+end
+
+puts res
