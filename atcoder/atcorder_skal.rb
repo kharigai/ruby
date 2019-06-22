@@ -8,11 +8,11 @@ a = gets.strip.split.each_with_index.map { |c, i| c.to_i - i - 1 }.sort
 # => [1, 2, 3]
 a = N.times.map { gets.strip.to_i }
 
-# => a = [1, 2, 3], b = [4, 5, 6], c = [7, 8, 9]
-a, b, c  = N.times.map { gets.strip.split.map(&:to_i) }
-
 # a [[1, 2, 3], [4, 5, 6], [7, 8, 9],..]
 a = N.times.map { gets.strip.split.map(&:to_i) }
+
+# => a = [1, 2, 3], b = [4, 5, 6], c = [7, 8, 9]
+a, b, c  = N.times.map { gets.strip.split.map(&:to_i) }
 
 # inject
 h = { a: 1, b: 2, c: 3 }
@@ -25,7 +25,6 @@ a.inject(0) { |sum, v| sum += v }
 
 # 等価
 a.inject(:+)
-
 
 # 複数の配列を初期化
 ls = []
