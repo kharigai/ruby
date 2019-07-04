@@ -43,6 +43,8 @@ a = Array.new(N).map { Array.new(K){0} }
 # 積算
 puts a.inject(0) { |sum, n| sum + (n - b).abs }
 
+# 累積和
+../sample/cumulative_sum.rb 
 
 # 指定された値以下のすべての約数が含まれる配列を生成する
 def factor(n) 
