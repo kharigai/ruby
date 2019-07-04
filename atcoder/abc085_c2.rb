@@ -6,11 +6,9 @@ def fin(i, j, k)
 end
 
 (0..N).each do |i|
-  (0..N).each do |j|
-    k = N - (i + j)
-    if k >= 0 && Y.eql?(i * 10000 + j * 5000 + k * 1000)
-      fin(i, j, k)
-    end
+  (0..(N - i)).each do |j|
+    k = N - i - j
+    fin(i, j, k) if Y.eql?(i * 10000 + j * 5000 + k * 1000)
   end
 end
 
