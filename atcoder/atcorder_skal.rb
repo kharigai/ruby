@@ -36,6 +36,11 @@ M.times { |i| ls[i], rs[i] = gets.strip.split.map(&:to_i) }
 def chmax(a, b) a > b ? a : b end
 def chmin(a, b) a < b ? a : b end
 
+# 終了関する
+def fin
+  exit
+end
+
 # 配列の初期化(1次元、2次元)
 a = Array.new(N){0}
 a = Array.new(N).map { Array.new(K){0} }
@@ -51,6 +56,10 @@ def factor(n)
   return [] if n < 1
   (1..n).select { |i| (n % i) == 0 }
 end
+
+# 正規表現で配列を使う場合 #{V} を使用する
+A, B = gets.strip.split.map(&:to_i)
+puts S =~ /[0-9]{#{A}}-[0-9]{#{B}}/ ? 'Yes' : 'No'
 
 # 指定された値以下の全ての素数が含まれる配列を生成する（エラトステネスの篩）
 def prime_list(n)
