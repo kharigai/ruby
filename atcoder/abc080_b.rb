@@ -1,2 +1,2 @@
 N = gets.strip
-puts (N.to_i % N.chars.map(&:to_i).inject(:+)).zero? ? 'Yes' : 'No'
+puts (N.to_i % N.chars.inject(0) { |s, n| s += n.to_i }).zero? ? 'Yes' : 'No'
