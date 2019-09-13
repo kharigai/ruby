@@ -1,3 +1,1 @@
-A = gets.strip.to_i 
-S = gets.strip
-puts A >= 3200 ? S : 'red'
+puts gets.strip.to_i >= 3200 ? gets.strip : 'red'
