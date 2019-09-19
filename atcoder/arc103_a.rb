@@ -1,27 +1,20 @@
 N = gets.strip.to_i
-even = Hash.new(0)
-odd = Hash.new(0)
-all = Hash.new(0)
+s = gets.strip.split.map(&:to_i)
 
-A = gets.strip.split.map(&:to_i)
+hs = Array.new(2) { Hash.new(0) }
+hs[0][0] = 0
+hs[1][0] = 0
+# => [{0=>0}, {0=>0}]
+# この初期化によりハッシュ数（2）を保証する
 
-A.unshift 0
+s.each_with_index { |n, i| hs[i%2][n] += 1 }
 
-(1..N).each_with_index do |i|
-  if i.even?
-    even[A[i]] += 1
-  else
-    odd[A[i]] += 1
-  end
-  all[A[i]] += 1
-end
+e = hs[0].sort_by { |_, v| -v }
+o = hs[1].sort_by { |_, v| -v }
 
-
-if all.size > 1
-  chg = 0
-  chg += even.sort_by { |_, v| v }.first.last if even.size > 1
-  chg += odd.sort_by  { |_, v| v }.first.last if odd.size > 1
-  puts chg 
+if e[0][0] != o[0][0]
+  n = e[0][1] + o[0][1]
 else
-  puts all.values.first / 2
+  n = [e[0][1] + o[1][1], e[1][1] + o[0][1]].max
 end
+puts N - n
