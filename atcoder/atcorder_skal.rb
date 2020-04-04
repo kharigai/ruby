@@ -1,6 +1,14 @@
+# check syntax only
+# $ ruby -c xxx.rb
+
 # 入力
+## 空白区切りの文字を数値の変数に代入する
 N, K = gets.strip.split.map(&:to_i)
+
+
+## 文字(12等)を数値の変数に代入
 n = gets.strip.to_i
+
 
 a = gets.strip.split.each_with_index.map { |c, i| c.to_i - i - 1 }.sort
 
